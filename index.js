@@ -1,21 +1,28 @@
 
-let characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-let passwordLengthInput = document.getElementById('password-length').value;
-let symbolPref = document.getElementById('symbol-pref').checked;
-let numPref = document.getElementById('number-pref').checked;
+const lowercase = "abcdefghijklmnopqrstuvwxyz";
+const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+const symbols = ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "[", "}", "]", ",", "|", ":", ";", "<", ">", ".", "?", "/"];
+const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
 let storepass = document.getElementById('output')
 let message = document.getElementById('message')
 
 function generatePass() {
+    
+let symbolPref = document.getElementById('symbol-pref').checked;
+let numPref = document.getElementById('number-pref').checked;
+let passwordLengthInput = document.getElementById('password-length').value;
+let characters = lowercase + uppercase
+
+if (numPref) {
+    characters += numbers;
+  }
+
+  if (symbolPref) {
+    characters += symbols;
+  }
     let password = []
-    if (symbolPref && numPref) {
-        characters.push("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "[", "}", "]", ",", "|", ":", ";", "<", ">", ".", "?", "/");
-    } else if (symbolPref && !numPref){
-        characters.push("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "[", "}", "]", ",", "|", ":", ";", "<", ">", ".", "?", "/");
-    } else if ( !symbolPref && numPref){
-        characters.push("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    }
         
 
     for (let i = 0; i < passwordLengthInput; i++) {
@@ -34,7 +41,7 @@ function generatePass() {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    message.textContent = "Password Copied!"
+ message.textContent = "Password Copied!"
     storepass.textContent = passwordString
     return passwordString
 }
