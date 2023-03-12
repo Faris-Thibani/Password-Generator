@@ -1,13 +1,14 @@
 
+let characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+let passwordLengthInput = document.getElementById('password-length').value;
+let symbolPref = document.getElementById('symbol-pref').checked;
+let numPref = document.getElementById('number-pref').checked;
+let storepass = document.getElementById('output')
+let message = document.getElementById('message')
+
 function generatePass() {
     let password = []
-    let characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-    let passwordLengthInput = document.getElementById('password-length').value;
-    let symbolPref = document.getElementById('symbol-pref').checked;
-    let numPref = document.getElementById('number-pref').checked;
-    let storepass = document.getElementById('output')
-
     if (symbolPref && numPref) {
         characters.push("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "[", "}", "]", ",", "|", ":", ";", "<", ">", ".", "?", "/");
     } else if (symbolPref && !numPref){
@@ -33,7 +34,7 @@ function generatePass() {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-alert("Password Copied")
+    message.textContent = "Password Copied!"
     storepass.textContent = passwordString
     return passwordString
 }

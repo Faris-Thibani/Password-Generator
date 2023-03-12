@@ -59,3 +59,9 @@ body{
     height: 50px;
     overflow: auto;
   } 
+  #message {
+    padding: 10px;
+    margin-top: 10px;
+    color: white;
+
+  }
